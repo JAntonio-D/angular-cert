@@ -1,0 +1,7 @@
+<h2>{{ title | uppercase}}</h2>
+
+<app-select-country></app-select-country>
+
+<div *ngIf="selectedCountry$ | async as selectedCountry">
+    <app-standings [id]="selectedCountry"></app-standings>
+</div>

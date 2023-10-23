@@ -1,0 +1,6 @@
+<div class="container">
+    <div *ngFor="let country of countriesList" style="margin: 1rem;">
+        <button [id]="(country | lowercase) + 'Select'" [routerLink]="'/' + (country | lowercase) + 'Select'"> {{ country }}
+        </button>
+    </div>
+</div>
