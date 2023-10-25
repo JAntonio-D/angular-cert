@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './public-api';
 import { SelectCountryComponent } from './select-country/select-country.component';
 import { StandingsComponent } from './standings/standings.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ApiInterceptor } from './interceptors/api.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,16 @@ import { StandingsComponent } from './standings/standings.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
