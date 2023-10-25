@@ -9,6 +9,7 @@ import { StandingsComponent } from './standings/standings.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { GameResultsComponent } from './game-results/game-results.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GameResultsComponent } from './game-results/game-results.component';
     HomeComponent,
     SelectCountryComponent,
     StandingsComponent,
-    GameResultsComponent
+    GameResultsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
