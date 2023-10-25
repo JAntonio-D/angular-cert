@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { League } from '../interfaces/public-api';
+import { Leagues } from '../../assets/data/public-api'
 
 @Component({
   selector: 'app-select-country',
@@ -6,16 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-country.component.scss']
 })
 export class SelectCountryComponent implements OnInit {
-  public countriesList : string[]
+  public leagues : League[]
   constructor() {
-    this.countriesList = ['England', 'Spain', 'Germany', 'France', 'Italy']
+    this.leagues = Leagues.data
    }
 
   ngOnInit(): void {
-  }
-
-  setCountry(country: string): void {
-    //this.location.
   }
 
 }

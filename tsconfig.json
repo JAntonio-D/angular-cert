@@ -19,7 +19,9 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "checkJs": true,
+    "typeRoots": ["node_modules/@types", "node_modules/@angular",  "node_modules/@angular/common/http"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
