@@ -8,13 +8,15 @@ import { SelectCountryComponent } from './select-country/select-country.componen
 import { StandingsComponent } from './standings/standings.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
+import { GameResultsComponent } from './game-results/game-results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SelectCountryComponent,
-    StandingsComponent
+    StandingsComponent,
+    GameResultsComponent
   ],
   imports: [
     BrowserModule,

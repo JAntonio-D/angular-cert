@@ -1,6 +1,6 @@
-import { LeagueResponse, Standing } from "./public-api";
+import { FixtureResponse, Standing } from "./public-api";
 
 export interface CacheResponse {
-    standings: Standing[]
+    data: Standing[] | FixtureResponse
     cacheDate: Date
 }

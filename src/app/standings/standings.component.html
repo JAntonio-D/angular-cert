@@ -1,4 +1,3 @@
-<p>{{ id }}</p>
 <div *ngIf="standings$ | async as standings">
     <table>
         <thead>
@@ -7,7 +6,7 @@
           </tr>  
         </thead>
         <tbody>
-            <tr *ngFor="let standing of standings">
+            <tr *ngFor="let standing of standings" [routerLink]="'/results/' + standing.team.id">
                 <td>{{ standing.rank }}</td>
                 <td><img [src]="standing.team.logo" [alt]="standing.team.name"  width="20" height="20"></td>
                 <td>{{ standing.team.name }}</td>

@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { LeagueResponse, Standing, StandingResponse } from '../interfaces/public-api';
+import { LeagueResponse, Standing, ApiResponse } from '../interfaces/public-api';
 import { CacheService } from './cache.service';
 import { Observable, of } from 'rxjs';
 
@@ -32,7 +32,7 @@ export class FootballService {
 
   private getAPIStandings(leagueId: number): Observable<Standing[]> {
     const params = this.getParams(leagueId)
-    return this.http.get<StandingResponse<LeagueResponse[]>>(`${environment.config.security.apiUrl}standings`, {params})
+    return this.http.get<ApiResponse<LeagueResponse[]>>(`${environment.config.security.apiUrl}standings`, {params})
     .pipe(
       map((data) => {
         console.log(data);
@@ -45,7 +45,7 @@ export class FootballService {
     )
   }
 
-  private getStandingsFromResponse(data: StandingResponse<LeagueResponse[]>): Standing[] {
+  private getStandingsFromResponse(data: ApiResponse<LeagueResponse[]>): Standing[] {
     const standings = data.response[0].league?.standings
     const result = standings ? standings[0] : []
     return result

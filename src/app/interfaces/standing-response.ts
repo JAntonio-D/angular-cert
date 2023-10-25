@@ -1,4 +1,4 @@
-export interface StandingResponse<T> {
+export interface ApiResponse<T> {
     errors: any[]
     response: T
   }
