@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { LeagueResponse, Standing, ApiResponse } from '../interfaces/public-api';
 import { CacheService } from './cache.service';
@@ -35,12 +35,19 @@ export class FootballService {
     return this.http.get<ApiResponse<LeagueResponse[]>>(`${environment.config.security.apiUrl}standings`, {params})
     .pipe(
       map((data) => {
-        console.log(data);
+        if (data.errors.length > 0) {
+          console.log(data.errors);
+          return []
+        } 
         const standings = this.getStandingsFromResponse(data)
         if(standings.length > 0) {
           this.cache.setCacheStandings(leagueId, standings)  
         }
         return standings
+      }),
+      catchError((err) => {
+        console.log(err);
+        return of([])
       })
     )
   }

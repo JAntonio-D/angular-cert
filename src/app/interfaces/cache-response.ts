@@ -1,6 +1,6 @@
 import { FixtureResponse, Standing } from "./public-api";
 
 export interface CacheResponse {
-    data: Standing[] | FixtureResponse
+    data: Standing[] | FixtureResponse[]
     cacheDate: Date
 }

@@ -11,6 +11,7 @@ export class StandingsComponent implements OnInit {
   @Input() id: string = ''
   public tableHeader: string[] = ['', '', 'Name', 'Games', 'W', 'L', 'D', 'Goal Difference', 'Points']
   public standings$: Observable<any> = of()
+  public NoDataText: string = 'Error: No data. Please try again in a few minutes'
   constructor(private footballService: FootballService) {
     
    }

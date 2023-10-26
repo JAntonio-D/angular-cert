@@ -33,9 +33,6 @@ export class CacheService {
       const diff = date.getTime() - (new Date(cacheDate)).getTime()
       const hoursDiff = diff / (3600 * 1000)
 
-      console.log(hoursDiff);
-      console.log(data);
-
       if (hoursDiff > 2) {
         return [] as Standing[]
       }
@@ -45,7 +42,7 @@ export class CacheService {
     return [] as Standing[]
   }
 
-  public getCacheFixtures(teamId: number, last: number): FixtureResponse | null {
+  public getCacheFixtures(teamId: number, last: number): FixtureResponse[] | null {
     const date = new Date()
     const cacheKey = this.getCacheFixturesKey(teamId, last)
     const cache = this.getItemCache(cacheKey)
@@ -54,15 +51,11 @@ export class CacheService {
       
       const diff = date.getTime() - (new Date(cacheDate)).getTime()
       const hoursDiff = diff / (3600 * 1000)
-
-      console.log(hoursDiff);
-      console.log(data);
-
       if (hoursDiff > 2) {
         return null
       }
 
-      return data as FixtureResponse
+      return data as FixtureResponse[]
     }
     return null
   }

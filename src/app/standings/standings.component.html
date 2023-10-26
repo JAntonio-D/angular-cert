@@ -1,5 +1,5 @@
-<div *ngIf="standings$ | async as standings">
-    <table>
+<div *ngIf="standings$ | async as standings; else loading">
+    <table *ngIf="standings.length > 0; else NoData">
         <thead>
           <tr>
             <th *ngFor="let tableTitle of tableHeader">{{ tableTitle }}</th>
@@ -19,4 +19,11 @@
             </tr>
         </tbody>
     </table>
+    <ng-template #NoData>
+        <h3> {{ NoDataText }} </h3>
+    </ng-template>  
 </div>
+
+<ng-template #loading>
+  <app-loader></app-loader>
+</ng-template>

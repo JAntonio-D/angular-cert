@@ -2,8 +2,10 @@
 
 <app-select-country></app-select-country>
 <br><br>
-<div *ngIf="selectedCountry$ | async as selectedCountry">
+<div *ngIf="selectedCountry$ | async as selectedCountry; else loading">
     <app-standings [id]="selectedCountry"></app-standings>
 </div>
 
-<app-loader></app-loader>
+<ng-template #loading>
+    <app-loader></app-loader>
+</ng-template>

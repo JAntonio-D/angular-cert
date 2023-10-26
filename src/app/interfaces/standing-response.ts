@@ -1,4 +1,4 @@
 export interface ApiResponse<T> {
-    errors: any[]
+    errors: []
     response: T
   }

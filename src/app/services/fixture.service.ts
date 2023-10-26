@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApiResponse } from '../interfaces/standing-response';
 import { FixtureResponse } from '../interfaces/public-api';
 import { CacheService } from './cache.service';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,17 +32,24 @@ export class FixtureService {
     return this.getAPIFixtures(teamId, last)
   }
 
-  private getAPIFixtures(teamId: number, last: number) {
+  private getAPIFixtures(teamId: number, last: number): Observable<FixtureResponse[]> {
     const params = this.getParams(teamId, last)
     return this.http.get<ApiResponse<FixtureResponse[]>>(`${environment.config.security.apiUrl}fixtures`, {params})
     .pipe(
       map((data) => {
-        console.log(data);
+        if (data.errors.length > 0) {
+          console.log(data.errors);
+          return []
+        } 
         const fixtures = data.response
         if (fixtures) {
           this.cache.setCacheFixtures(teamId, last, fixtures)
         }
         return fixtures
+      }),
+      catchError((err) => {
+        console.log(err);
+        return of([])
       })
     )
   }
